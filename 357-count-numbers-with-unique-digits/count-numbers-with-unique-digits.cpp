@@ -1,11 +1,11 @@
 class Solution {
 public:
-    int dp[10][2][(1<<10)];
+    int dp[10][2][(1<<10)][2];
     int f(int idx,bool tight,long long mask,string &s,bool isLeadingZero){
         if(idx>=s.length()){
             return 1;
         }
-        int &res=dp[idx][tight][mask];
+        int &res=dp[idx][tight][mask][2];
         if(res!=-1) return res;
         int limit=tight ? s[idx]-'0' : 9;
         int ans=0;

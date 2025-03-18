@@ -40,7 +40,7 @@ public:
             graph[u].push_back({v,len});
             graph[v].push_back({u,len});
         }
-        unordered_map<int,int> depthMap;
+        unordered_map<int,int> depthMap; // marks the previous depth/lvl of node value
         vector<int> path;
         dfs(0,-1,0,0,0,nums,path,depthMap);
         return {maxLength,minNodes};

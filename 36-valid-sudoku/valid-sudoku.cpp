@@ -23,22 +23,13 @@ public:
         }
         return true;
     }
-
-    // bool f(vector<vector<char>>& board,int r,int c){
-    //     if(r==9 && c==9) return true;
-    //     if(!isSafe(board,r,c)){
-    //         return false;
-    //     }
-    //     return f(board,r+1,c+1);
-    // }
+    
     bool isValidSudoku(vector<vector<char>>& board) {
         for(int i=0;i<9;++i){
             for(int j=0;j<9;++j){
                 if(board[i][j]!='.'){
                     char num=board[i][j];
-                    // board[i][j]='.';
                     if(!isSafe(board,i,j)) return false;
-                    // board[i][j]=num;
                 }
             }
         }

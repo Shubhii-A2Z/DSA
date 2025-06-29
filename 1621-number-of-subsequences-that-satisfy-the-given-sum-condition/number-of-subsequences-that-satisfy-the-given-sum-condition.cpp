@@ -10,7 +10,7 @@ public:
         }
         return res;
     }
-    
+
     int numSubseq(vector<int>& nums, int target) {
         sort(begin(nums),end(nums)); 
 
@@ -21,7 +21,7 @@ public:
             int idx=upper_bound(begin(nums)+i,end(nums),target-ele)-begin(nums);
             idx--;
             if(idx<i) continue;
-            else cnt=(cnt+expo(2,idx-i))%MOD;
+            else cnt=(cnt+expo(2,idx-i))%MOD; // (2^(idx-i)) is number of subsequences that start at 'i' and can end anywhere at "idx"
         }
 
         return cnt;

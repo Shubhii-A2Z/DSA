@@ -1,8 +1,17 @@
 class Solution {
 public:
+
+    /*
+    *   For each bar, we want to find:
+    *   How far we can extend to the left → Previous Smaller Index (PSI)
+    *    How far we can extend to the right → Next Smaller Index (NSI)
+    *    Why? Because the bar’s height stays constant, but we want the widest width possible where no bar is shorter.
+    */
+
     int largestRectangleArea(vector<int>& heights) {
         int n=heights.size();
-        int nsi[n];
+
+        int nsi[n]; // just-next smaller index
         stack<int> st1;
         nsi[n-1]=n;
         st1.push(n-1);
@@ -12,7 +21,8 @@ public:
             else nsi[i]=st1.top(); 
             st1.push(i);
         }
-        int psi[n];
+
+        int psi[n]; // just-previous smaller index
         stack<int> st2;
         psi[0]=-1;
         st2.push(0);
@@ -22,15 +32,17 @@ public:
             else psi[i]=st2.top();
             st2.push(i); 
         }
+
         int maxA=0;
         for(int i=0;i<n;i++){
             int h=heights[i];
-            int b=nsi[i]-psi[i]-1;
-            int A=h*b;
+            int b=nsi[i]-psi[i]-1; // all the indices bw nsi[i] & psi[i] would be having height equal to or greater than 'h'
+            int A=h*b; // hence since we have removed the smaller height indices, the area is simply height*(largest breadth possible)
             maxA=max(A,maxA);
         }
         return maxA;
     }
+    
     int maximalRectangle(vector<vector<char>>& matrix) {
         int n=matrix.size();
         int m=matrix[0].size();

@@ -27,9 +27,7 @@ public:
                     }
                 }
                 s.insert({x1,y1}); s.insert({x2,y2});
-
-                if(flag) continue;
-                cnt++;
+                cnt+=(!flag);
             }
         }
 
